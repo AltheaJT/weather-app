@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="main-container">
+        <header class="input-container">
+            <input id="city-input" placeholder="Search City" type="text" name="" id="">
+            <button id="search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>City
+            </button>
+            <button id="live-btn">
+                <i class="fa-solid fa-map-pin"></i>Your Location
+            </button>
+        </header>
+        <section class="weather-info">
+            <div class="location-date-container">
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h4 class="country-txt">Nigeria</h4>                    
+                </div>
+                <h5 class="current-date-txt regular-txt">Monday, 20 Feb</h5>
+                <h5 class="current-time-txt regular-txt">22:39</h5>
+            </div>
+            <div class="weather-summary-container">
+                <img src="assets/weather/clouds.svg" alt="" class="weather-summary-img">
+                <div class="weather-summary-info">
+                    <h1 id="temp-txt">29&deg;C</h1>
+                    <h3 class="condition-txt regular-txt">Few Clouds</h3>
+                    <p class="humidity-info">Humidity: 25%</p>
+                    <p class="wind-info">Wind: 4Km/H</p>
+                </div>
+            </div>
+        </section>
+        <footer class="tomorrow-weather-info">
+            <p class="tomorrow-txt">Tomorrow's Weather</p>
+            <img src="assets/weather/clear.svg" class="tomorrow-weather-img">
+            <h5 class="temp-txt">
+                <span>26&deg;C |</span>
+                <span>15&deg;C</span></h5>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/bb461edfef.js" crossorigin="anonymous"></script>
+</body>
+</html>

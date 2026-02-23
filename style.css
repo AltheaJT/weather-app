@@ -36,6 +36,11 @@ body {
     padding: 15px;
 }
 
+.weather-info{
+    display:none;
+    flex-direction: column;
+}
+
 .input-container {
     display: flex;
     justify-content: flex-start;
@@ -116,7 +121,16 @@ i{
     gap: 20px;
 }
 
-.tomorrow-weather-info {
+.weather-summary-img {
+    width: 145px;
+    height: 145px;
+}
+
+.condition-txt {
+    text-transform: capitalize;
+}
+
+.forecast-info {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -124,9 +138,9 @@ i{
     margin-left: -20px;
 }
 
-.tomorrow-weather-img{
-    width: 50px;
-    height: 50px;
+.forecast-img{
+    width: 60px;
+    height: 60px;
 }
 
 .humidity-info, .wind-info {
@@ -134,9 +148,23 @@ i{
     font-size: 12px;
 }
 
-.tomorrow-txt {
+.forecast-txt {
     font-weight: 300;
     font-size: 14px;
+}
+
+.section-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+}
+
+.section-message img{
+    width: fit-content;
+    height: 175px;
+    margin-top: 10px;
 }
 /*.weather-info {
 

@@ -27,13 +27,13 @@ body {
 #main-container {
     border: 3px transparent;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-    width: 60%;
-    height: 70%;
+    width: 55%;
+    height: 65%;
     z-index: 1;
     background: linear-gradient(105deg, #bad1fa 0%, #ecddd4 50%, #FFE2B0 100%);
     border-radius: 12px;
     backdrop-filter: blur(100px);
-    padding: 20px;
+    padding: 15px;
 }
 
 .input-container {
@@ -42,6 +42,7 @@ body {
     align-items: center;
     gap: 5px;
     margin-bottom: 25px;
+    margin-left: 20px;
 }
 
 #city-input {
@@ -99,8 +100,8 @@ i{
 .location-date-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin-bottom: 15px;
+    margin-left: 40px;
 }
 .location{
     display: flex;
@@ -111,15 +112,16 @@ i{
 .weather-summary-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 20px;
 }
 
 .tomorrow-weather-info {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 20px;
+    margin-left: -20px;
 }
 
 .tomorrow-weather-img{

@@ -37,10 +37,25 @@ cityInput.addEventListener('keydown', (event) => {
         cityValue = "";
         cityInput.blur();
     }
-});           
+});  
 
-async function getFetchData(endPoint, city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?q=${city}&appid=${apiKey}&units=metric`;
+liveBtn.addEventListener("click", () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const { latitude: lat, longitude: lon } = position.coords;
+                await updateWeatherInfo(null, { lat, lon });
+            },
+            () => alert("Unable to retrieve your location. Please allow location access.")
+        );
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+});
+
+async function getFetchData(endPoint, city, coords=null) {
+    const query = coords ? `lat=${coords.lat}&lon=${coords.lon}` : `q=${city}`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/${endPoint}?${query}&appid=${apiKey}&units=metric`;
 
     const response = await fetch(apiUrl);
     return response.json();
@@ -75,7 +90,7 @@ const weatherGradients = {
     rain:         "linear-gradient(105deg, #4a6fa5 0%, #6b8cba 50%, #89a4c7 100%)",
     snow:         "linear-gradient(105deg, #e8f0f7 0%, #d6e4f0 50%, #c9d8e8 100%)",
     atmosphere:   "linear-gradient(105deg, #b8b8b8 0%, #d0d0d0 50%, #e8e8e8 100%)",
-    clear:        "linear-gradient(105deg, #f7d86e 0%, #f4a444 50%, #f07030 100%)",
+    clear:        "linear-gradient(105deg, #d3e5ed 0%, #bad1fa 50%, #9fc6d6 100%)",
     clouds:       "linear-gradient(105deg, #bad1fa 0%, #ecddd4 50%, #FFE2B0 100%)",
 }
 
@@ -96,8 +111,8 @@ function applyGradient(id) {
 }
 
 
-async function updateWeatherInfo(city) {
-    const weatherData = await getFetchData("weather", city);
+async function updateWeatherInfo(city, coords=null) {
+    const weatherData = await getFetchData("weather", city, coords);
     
     if (weatherData.cod != 200) {
         showDisplaySection(notFoundSection)
@@ -123,12 +138,12 @@ async function updateWeatherInfo(city) {
     weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
     applyGradient(id);
-    await updateForecastInfo(city);
+    await updateForecastInfo(city, coords);
     showDisplaySection(weatherInfoSection);
 }
 
-async function updateForecastInfo(city) {
-    const forecastData = await getFetchData("forecast", city);
+async function updateForecastInfo(city, coords=null) {
+    const forecastData = await getFetchData("forecast", city, coords);
 
     const timeTaken = '12:00:00';
 
@@ -150,7 +165,7 @@ async function updateForecastInfo(city) {
 
 function updateForecastItem(weatherData) {
     const {  
-        main: {temp}, 
+        main: {temp_max, temp_min}, 
         weather: [{icon}] 
     } = weatherData;   
 
@@ -158,12 +173,12 @@ function updateForecastItem(weatherData) {
         <p class="forecast-txt">Tomorrow's Weather</p>
         <img src="https://openweathermap.org/img/wn/${icon}@4x.png" class="forecast-img">
         <h5 class="temp-txt">
-            <span class="forecast-temp">${Math.round(temp)}°C |</span>
-            <span>15&deg;C</span>
+            <span class="forecast-temp">${Math.round(temp_max)}°C |</span>
+            <span>${Math.round(temp_min)}°C</span>
         </h5>
     `
     forecastInfoSection.innerHTML = forecastItem;
-
+    console.log(weatherData);
 }
 
 function showDisplaySection(section) {

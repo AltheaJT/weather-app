@@ -88,6 +88,14 @@ i{
     margin: 0;
 }
 
+.pin-icon {
+    color: rgba(208, 1, 1, 0.783);
+}
+
+.search-icon {
+    color: #899499;
+}
+
 #live-btn {
     display: flex;
     align-items: center;
@@ -134,8 +142,8 @@ i{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 20px;
-    margin-left: -20px;
+    margin-top: 15px;
+    margin-left: -15px;
 }
 
 .forecast-img{

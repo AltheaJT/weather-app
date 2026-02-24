@@ -39,6 +39,10 @@ cityInput.addEventListener('keydown', (event) => {
     }
 });  
 
+cityInput.addEventListener('input', () => {
+    searchBtn.disabled = cityInput.value.trim() === "";
+});
+
 liveBtn.addEventListener("click", () => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

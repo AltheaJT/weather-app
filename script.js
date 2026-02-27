@@ -28,6 +28,8 @@ searchBtn.addEventListener("click", () => {
         alert("Please enter a city name");
         console.log("Please enter a city name");
     }
+
+    cityInput.value = "";
 });
 
 cityInput.addEventListener('keydown', (event) => {
